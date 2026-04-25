@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accedi — Verion Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--bg-primary);
+    }
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 2.5rem;
+    }
+    .login-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      margin-bottom: .5rem;
+    }
+    .login-sub {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: .5rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: .95rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--text-muted); }
+    .login-error {
+      display: none;
+      background: rgba(239,68,68,.12);
+      border: 1px solid rgba(239,68,68,.3);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      color: #ef4444;
+      font-size: .875rem;
+      margin-bottom: 1rem;
+    }
+    .login-error.visible { display: block; }
+    .btn-login {
+      width: 100%;
+      padding: .85rem;
+      font-size: 1rem;
+    }
+    .login-back {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: .875rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .login-back:hover { color: var(--accent); }
+    .login-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .login-info {
+      font-size: .8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-page">
+  <div class="login-box">
+
+    <div class="login-logo">
+      <div class="navbar__logo-mark">VR</div>
+      <span class="navbar__brand">Verion <span>Research</span></span>
+    </div>
+
+    <h1 class="login-title">Area riservata</h1>
+    <p class="login-sub">Inserisci la password per accedere a Research Hub e Portfolio completo.</p>
+
+    <div class="login-error" id="login-error">
+      Password errata. Riprova.
+    </div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input
+          class="form-input"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="••••••••••"
+          autocomplete="current-password"
+          autofocus
+        >
+      </div>
+      <button type="submit" class="btn btn--primary btn-login">Accedi →</button>
+    </form>
+
+    <a href="index.html" class="login-back">← Torna alla home pubblica</a>
+
+    <hr class="login-divider">
+    <p class="login-info">
+      L'area riservata contiene analisi dettagliate, log completo delle operazioni e tesi di investimento.
+      I contenuti pubblici del sito sono accessibili senza registrazione.
+    </p>
+
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+  // Se già autenticato, vai diretto
+  if (VR_AUTH.isAuthenticated()) {
+    VR_AUTH.redirectAfterLogin();
+  }
+
+  document.getElementById('login-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const pw  = document.getElementById('password').value;
+    const err = document.getElementById('login-error');
+    if (VR_AUTH.login(pw)) {
+      VR_AUTH.redirectAfterLogin();
+    } else {
+      err.classList.add('visible');
+      document.getElementById('password').value = '';
+      document.getElementById('password').focus();
+    }
+  });
+</script>
+</body>
+</html>

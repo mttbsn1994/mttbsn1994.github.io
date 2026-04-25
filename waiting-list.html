@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waiting List — Verion Research</title>
+  <meta name="description" content="Unisciti alla waiting list di Verion Research per accedere all'area riservata con analisi, research e portfolio completo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .wl-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── Pannello sinistro ── */
+    .wl-left {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .wl-left .label { margin-bottom: 1.5rem; }
+    .wl-left h1 { margin-bottom: 1.25rem; font-size: clamp(1.6rem, 3vw, 2.4rem); }
+    .wl-left p  { margin-bottom: 1rem; }
+
+    .wl-bullets {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .wl-bullet {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .wl-bullet-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: .85rem;
+    }
+    .wl-bullet-text strong { display: block; font-size: .9rem; color: var(--text-primary); margin-bottom: .15rem; }
+    .wl-bullet-text span   { font-size: .82rem; color: var(--text-muted); }
+
+    .wl-counter {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .wl-counter-num {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .wl-counter-label { font-size: .8rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── Pannello destro ── */
+    .wl-right {
+      background: var(--bg-primary);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .wl-form-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    .wl-form-sub {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 100%;
+    }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: .5rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .8rem 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: .95rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .btn-submit { width: 100%; padding: .9rem; font-size: 1rem; margin-top: .5rem; }
+
+    .form-disclaimer {
+      font-size: .75rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ── Stato di successo ── */
+    .wl-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .wl-success-icon {
+      width: 64px; height: 64px;
+      background: rgba(34,197,94,.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: var(--positive);
+    }
+    .wl-success h2 { font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: .75rem; }
+    .wl-success p  { font-size: .9rem; color: var(--text-secondary); max-width: 100%; margin-bottom: 1rem; }
+    .wl-position {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid rgba(201,168,71,.3);
+      border-radius: var(--radius);
+      padding: .75rem 1.5rem;
+      margin: 1rem 0;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    .wl-position span { font-size: 1.8rem; font-weight: 700; }
+
+    /* ── Errore ── */
+    .form-error {
+      display: none;
+      background: rgba(239,68,68,.1);
+      border: 1px solid rgba(239,68,68,.25);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      color: #ef4444;
+      font-size: .85rem;
+      margin-bottom: 1rem;
+    }
+    .form-error.visible { display: block; }
+
+    /* ── Navbar back link ── */
+    .wl-back {
+      position: fixed;
+      top: 1.25rem;
+      left: 1.5rem;
+      z-index: 10;
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .wl-back:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .wl-page { grid-template-columns: 1fr; }
+      .wl-left  { padding: 4rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .wl-right { padding: 2rem; }
+      .wl-back  { position: static; margin-bottom: 1rem; display: inline-flex; padding: 1rem 1.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="wl-back">← Torna al sito</a>
+
+<div class="wl-page">
+
+  <!-- ══ PANNELLO SINISTRO ══ -->
+  <div class="wl-left">
+
+    <div class="navbar__logo" style="margin-bottom:2.5rem">
+      <div class="navbar__logo-mark">VR</div>
+      <span class="navbar__brand">Verion <span>Research</span></span>
+    </div>
+
+    <p class="label">Area riservata — Waiting list</p>
+    <h1>Accedi al processo reale di investimento.</h1>
+    <p>
+      Stiamo costruendo un'area riservata dove research, analisi e operazioni sono completamente accessibili. Iscriviti ora per essere tra i primi ad accedere.
+    </p>
+
+    <div class="wl-bullets">
+      <div class="wl-bullet">
+        <div class="wl-bullet-icon">◈</div>
+        <div class="wl-bullet-text">
+          <strong>Research Hub completo</strong>
+          <span>Analisi macro, equity e settoriali con tesi di investimento dettagliate.</span>
+        </div>
+      </div>
+      <div class="wl-bullet">
+        <div class="wl-bullet-icon">◈</div>
+        <div class="wl-bullet-text">
+          <strong>Log operazioni e dettaglio</strong>
+          <span>Entry, exit, motivazione e ragionamento dietro ogni posizione.</span>
+        </div>
+      </div>
+      <div class="wl-bullet">
+        <div class="wl-bullet-icon">◈</div>
+        <div class="wl-bullet-text">
+          <strong>Lettera periodica completa</strong>
+          <span>Revisione approfondita di errori, adattamenti e contesto di mercato.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wl-counter">
+      <div class="wl-counter-num" id="counter-display">—</div>
+      <div class="wl-counter-label">persone già<br>in lista</div>
+    </div>
+
+  </div>
+
+  <!-- ══ PANNELLO DESTRO ══ -->
+  <div class="wl-right">
+
+    <!-- Form -->
+    <div id="form-section">
+      <h2 class="wl-form-title">Iscriviti alla waiting list</h2>
+      <p class="wl-form-sub">Riceverai un'email non appena l'accesso sarà disponibile. Nessuno spam.</p>
+
+      <div class="form-error" id="form-error">
+        Si è verificato un errore. Riprova tra qualche secondo.
+      </div>
+
+      <!--
+        ══════════════════════════════════════════════
+        SETUP FORMSPREE (5 minuti):
+        1. Vai su https://formspree.io
+        2. Crea account con ingenieromattibesana@gmail.com
+        3. Clicca "New Form" → copia l'ID (es. xpzgkqyw)
+        4. Sostituisci YOUR_FORM_ID qui sotto con il tuo ID
+        5. Salva, commit, push
+        ══════════════════════════════════════════════
+      -->
+      <form id="wl-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <!-- Campi nascosti -->
+        <input type="hidden" name="_subject" value="🔔 Nuova iscrizione Waiting List — Verion Research">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="Posizione in lista" id="position-field" value="">
+        <input type="hidden" name="Data iscrizione" id="date-field" value="">
+
+        <div class="form-group">
+          <label class="form-label" for="name">Nome completo *</label>
+          <input class="form-input" type="text" id="name" name="Nome" placeholder="Mario Rossi" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email *</label>
+          <input class="form-input" type="email" id="email" name="Email" placeholder="mario@esempio.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Numero di telefono</label>
+          <input class="form-input" type="tel" id="phone" name="Telefono" placeholder="+39 333 123 4567">
+        </div>
+
+        <button type="submit" class="btn btn--primary btn-submit" id="submit-btn">
+          Iscriviti alla waiting list →
+        </button>
+
+        <p class="form-disclaimer">
+          Inviando il modulo accetti di essere contattato da Verion Research esclusivamente in merito all'accesso alla piattaforma. I tuoi dati non verranno condivisi con terzi.
+        </p>
+      </form>
+    </div>
+
+    <!-- Messaggio di successo -->
+    <div class="wl-success" id="success-section">
+      <div class="wl-success-icon">✓</div>
+      <h2>Sei in lista.</h2>
+      <p>Grazie per l'interesse. Ti contatteremo non appena l'accesso all'area riservata sarà disponibile.</p>
+      <div class="wl-position">
+        Posizione in waiting list: <span id="position-display">#—</span>
+      </div>
+      <p style="font-size:.82rem;color:var(--text-muted)">
+        Tieni d'occhio la tua casella email. Ti avviseremo in anticipo rispetto all'apertura pubblica.
+      </p>
+      <a href="index.html" class="btn btn--outline" style="margin-top:1.5rem">← Torna al sito</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* ── Gestione contatore locale ── */
+  const WL_KEY      = 'vr_wl_position';
+  const WL_BASE     = 12; // numero di partenza (simula persone già iscritte)
+
+  function getNextPosition() {
+    const current = parseInt(localStorage.getItem(WL_KEY) || WL_BASE, 10);
+    const next    = current + 1;
+    localStorage.setItem(WL_KEY, next);
+    return next;
+  }
+
+  function getCurrentCount() {
+    return parseInt(localStorage.getItem(WL_KEY) || WL_BASE, 10);
+  }
+
+  // Mostra contatore nel pannello sinistro
+  document.getElementById('counter-display').textContent = getCurrentCount();
+
+  /* ── Imposta data e posizione nei campi nascosti ── */
+  const now      = new Date();
+  const dateStr  = now.toLocaleDateString('it-IT', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('date-field').value = dateStr;
+
+  /* ── Gestione form ── */
+  const form      = document.getElementById('wl-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const errBox    = document.getElementById('form-error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBox.classList.remove('visible');
+    submitBtn.disabled   = true;
+    submitBtn.textContent = 'Invio in corso…';
+
+    // Assegna posizione
+    const position = getNextPosition();
+    document.getElementById('position-field').value = '#' + position;
+    document.getElementById('position-display').textContent = '#' + position;
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        document.getElementById('form-section').style.display    = 'none';
+        document.getElementById('success-section').style.display = 'block';
+        document.getElementById('counter-display').textContent   = position;
+      } else {
+        throw new Error('response not ok');
+      }
+    } catch {
+      errBox.classList.add('visible');
+      submitBtn.disabled   = false;
+      submitBtn.textContent = 'Iscriviti alla waiting list →';
+    }
+  });
+</script>
+
+</body>
+</html>

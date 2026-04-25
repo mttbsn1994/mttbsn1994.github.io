@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Hub — Verion Research</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="../index.html" class="navbar__logo">
+      <div class="navbar__logo-mark">VR</div>
+      <span class="navbar__brand">Verion <span>Research</span></span>
+    </a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="../newsletter.html">Lettera</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../about.html">About</a>
+      <span style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--text-muted)">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--positive);flex-shrink:0"></span>
+        Area riservata
+      </span>
+      <button onclick="VR_AUTH.logout()" class="navbar__cta" style="background:none;border:1px solid var(--border);color:var(--text-muted);cursor:pointer;font-family:var(--font-sans)">Esci</button>
+    </div>
+    <button class="navbar__toggle" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+      <p class="label">Research Hub</p>
+      <span class="tag" style="background:rgba(34,197,94,.12);color:var(--positive)">Area riservata</span>
+    </div>
+    <h1>Dove si sta muovendo il capitale — e perché.</h1>
+    <p>Analisi macroeconomiche, studi su aziende e settori, approfondimenti su eventi rilevanti. Tutto costruito per rispondere a una domanda: dove si sta muovendo il capitale e perché.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ FEATURED ══ -->
+  <div style="margin-bottom:4rem">
+    <p class="label mb-2">In evidenza</p>
+    <div class="card-grid card-grid--2" id="featured-articles">
+      <div class="chart-placeholder" style="height:200px;grid-column:1/-1">Caricamento…</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ ALL ARTICLES ══ -->
+  <div style="margin-bottom:5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+      <p class="label">Tutte le analisi</p>
+      <div class="filter-bar" style="margin-bottom:0">
+        <button class="filter-btn active" data-cat="all">Tutto</button>
+        <button class="filter-btn" data-cat="macro">Macro</button>
+        <button class="filter-btn" data-cat="equity">Equity</button>
+        <button class="filter-btn" data-cat="sector">Settori</button>
+        <button class="filter-btn" data-cat="idea">Idee</button>
+      </div>
+    </div>
+    <div class="card-grid card-grid--3" id="articles-grid">
+      <div class="chart-placeholder" style="height:200px;grid-column:1/-1">Caricamento analisi…</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ METHODOLOGY ══ -->
+<section class="section--sm" style="background:var(--bg-secondary);border-top:1px solid var(--border)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center">
+      <div>
+        <p class="label mb-2">Come lavoriamo</p>
+        <h2>Ogni analisi segue un processo strutturato.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div class="card">
+          <div class="label mb-2">Macro first</div>
+          <p style="font-size:.875rem;max-width:100%">Il contesto macroeconomico determina il quadro. Prima di analizzare un'azienda, capiamo il ciclo.</p>
+        </div>
+        <div class="card">
+          <div class="label mb-2">Dati, non opinioni</div>
+          <p style="font-size:.875rem;max-width:100%">Ogni tesi si basa su dati verificabili. Le opinioni si formano a partire dai numeri, non il contrario.</p>
+        </div>
+        <div class="card">
+          <div class="label mb-2">Tesi documentata</div>
+          <p style="font-size:.875rem;max-width:100%">Prima di ogni operazione, la tesi deve essere scritta. Il processo precede sempre l'esecuzione.</p>
+        </div>
+        <div class="card">
+          <div class="label mb-2">Revisione continua</div>
+          <p style="font-size:.875rem;max-width:100%">Le tesi vengono aggiornate. Se i fatti cambiano, il ragionamento si adatta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <div class="navbar__logo-mark">VR</div>
+          <span class="navbar__brand">Verion <span>Research</span></span>
+        </div>
+        <p class="footer__tagline">Un sistema strutturato per ragionare sui mercati. Ricerca, processo, trasparenza.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Area riservata</h4>
+        <ul>
+          <li><a href="research.html">Research Hub</a></li>
+          <li><a href="portfolio.html">Portfolio completo</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Pubblica</h4>
+        <ul>
+          <li><a href="../newsletter.html">Lettera periodica</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Categorie</h4>
+        <ul>
+          <li><a href="#">Macro</a></li>
+          <li><a href="#">Equity</a></li>
+          <li><a href="#">Settori</a></li>
+          <li><a href="#">Idee</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Verion Research. Tutti i diritti riservati.</p>
+      <p class="footer__disclaimer">I contenuti hanno finalità esclusivamente informativa ed educativa. Non costituiscono consulenza finanziaria o raccomandazione di investimento.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/auth.js"></script>
+<script>VR_AUTH.requireAuth();</script>
+<script src="../js/components.js"></script>
+<script>
+  // Overwrite data path for subfolder
+  document.addEventListener('DOMContentLoaded', async () => {
+    const data = await VR.loadJSON('../data/articles.json');
+    if (!data?.articles) return;
+    const articles = data.articles;
+
+    // Featured
+    const featuredContainer = document.getElementById('featured-articles');
+    const featured = articles.filter(a => a.featured);
+    featuredContainer.innerHTML = featured.map(a => `
+      <a href="#${a.slug}" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag ${VR.tagClass(a.category)}">${VR.tagLabel(a.category)}</span>
+            <span class="article-card__date">${VR.fmtDate(a.date)}</span>
+            <span class="tag" style="background:rgba(201,168,71,.15);color:var(--accent)">In evidenza</span>
+          </div>
+          <div class="article-card__title" style="font-size:1.2rem">${a.title}</div>
+          <div class="article-card__excerpt">${a.excerpt}</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'analisi →</span>
+          <span class="text-muted" style="font-size:.78rem">${a.read_time} min lettura</span>
+        </div>
+      </a>
+    `).join('');
+
+    // All articles
+    function renderGrid(list) {
+      const grid = document.getElementById('articles-grid');
+      grid.innerHTML = list.length ? list.map(a => `
+        <a href="#${a.slug}" class="article-card" style="text-decoration:none">
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              <span class="tag ${VR.tagClass(a.category)}">${VR.tagLabel(a.category)}</span>
+              <span class="article-card__date">${VR.fmtDate(a.date)}</span>
+            </div>
+            <div class="article-card__title">${a.title}</div>
+            <div class="article-card__excerpt">${a.excerpt}</div>
+          </div>
+          <div class="article-card__footer">
+            <span class="article-card__read">Leggi l'analisi →</span>
+            <span class="text-muted" style="font-size:.78rem">${a.read_time} min lettura</span>
+          </div>
+        </a>
+      `).join('') : `<div style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem">Nessun articolo in questa categoria.</div>`;
+    }
+
+    renderGrid(articles);
+
+    document.querySelectorAll('.filter-btn[data-cat]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn[data-cat]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.cat;
+        renderGrid(f === 'all' ? articles : articles.filter(a => a.category === f));
+      });
+    });
+  });
+</script>
+</body>
+</html>
