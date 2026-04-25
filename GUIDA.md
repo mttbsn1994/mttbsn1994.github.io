@@ -1,38 +1,60 @@
 # Verion Research — Guida alla gestione del sito
 
+---
+
 ## Struttura dei file
 
 ```
 Pagina web/
 │
-├── index.html          → Home page
-├── research.html       → Research Hub (analisi)
-├── portfolio.html      → Portfolio & operazioni
-├── newsletter.html     → Lettera periodica
-├── blog.html           → Blog
-├── about.html          → Pagina about
+├── index.html           → Home page (pubblica)
+├── portfolio.html       → Portfolio pubblico (metriche + curva, log bloccato)
+├── newsletter.html      → Lettera periodica (pubblica)
+├── blog.html            → Blog (pubblico)
+├── about.html           → About (pubblico)
+├── waiting-list.html    → Pagina iscrizione waiting list
+│
+├── private/
+│   └── research.html    → Research Hub (riservato, per uso futuro)
 │
 ├── css/
-│   └── style.css       → Tutti gli stili grafici (colori, font, layout)
+│   └── style.css        → Tutti gli stili grafici (colori, font, layout)
 │
 ├── js/
-│   ├── components.js   → Navbar, filtri, grafico, funzioni condivise
-│   ├── main.js         → Logica home page
-│   ├── portfolio.js    → Logica pagina portfolio
-│   ├── research.js     → Logica pagina research
-│   └── newsletter.js   → Logica pagina newsletter
+│   ├── components.js    → Navbar, filtri, grafico, funzioni condivise
+│   ├── main.js          → Logica home page
+│   ├── portfolio.js     → Logica pagina portfolio (metriche + curva)
+│   ├── research.js      → Logica research hub
+│   ├── newsletter.js    → Logica pagina newsletter
+│   └── auth.js          → Sistema autenticazione (per uso futuro)
 │
 └── data/
-    ├── operations.json → Operazioni del portfolio
-    ├── articles.json   → Analisi del Research Hub
-    └── newsletter.json → Archivio lettere periodiche
+    ├── operations.json  → Operazioni del portfolio
+    ├── articles.json    → Analisi del Research Hub
+    └── newsletter.json  → Archivio lettere periodiche
 ```
+
+---
+
+## Struttura del sito: pubblica vs riservata
+
+| Pagina | Visibilità | Contenuto |
+|--------|-----------|-----------|
+| `index.html` | Pubblica | Home, anteprima analisi, equity curve |
+| `portfolio.html` | Pubblica | Metriche + equity curve. Log operazioni bloccato (sfocato) |
+| `newsletter.html` | Pubblica | Ultima lettera + archivio edizioni |
+| `blog.html` | Pubblica | Tutti i post del blog |
+| `about.html` | Pubblica | Chi sono, approccio, filosofia |
+| `waiting-list.html` | Pubblica | Form iscrizione waiting list |
+| `private/research.html` | Riservata (futura) | Research Hub completo |
+
+**Navbar pubblica:** Home — Portfolio — Lettera — Blog — About — *Unisciti alla lista →*
 
 ---
 
 ## Come pubblicare aggiornamenti
 
-Dopo qualsiasi modifica, apri il terminale nella cartella del sito ed esegui:
+Dopo qualsiasi modifica, apri il terminale nella cartella del sito:
 
 ```bash
 git add .
@@ -44,11 +66,43 @@ Il sito si aggiorna su https://mttbsn1994.github.io entro 1-2 minuti.
 
 ---
 
-## 1. Aggiungere una nuova operazione al portfolio
+## 1. Waiting list — Attivare l'invio email (da fare una volta sola)
+
+Il form è pronto ma le email non partono finché non colleghi Formspree.
+
+1. Vai su **https://formspree.io** e crea un account con la tua email
+2. Clicca **"New Form"** → dai un nome → copia l'**ID** (es. `xpzgkqyw`)
+3. Apri `waiting-list.html` e trova questa riga:
+   ```html
+   <form id="wl-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+   ```
+4. Sostituisci `YOUR_FORM_ID` con il tuo ID reale
+5. Salva e pubblica:
+   ```bash
+   git add . && git commit -m "attiva Formspree" && git push
+   ```
+
+Da quel momento ricevi una mail per ogni iscrizione con: nome, email, telefono, posizione in lista e data.
+
+### Modificare il numero di partenza della waiting list
+
+Apri `waiting-list.html` e cerca questa riga:
+
+```js
+const WL_BASE = 12; // numero di partenza (simula persone già iscritte)
+```
+
+Cambia `12` con il numero che vuoi mostrare come punto di partenza.
+
+---
+
+## 2. Aggiungere una nuova operazione al portfolio
+
+Le operazioni vengono usate nel **portfolio pubblico** (solo metriche) e in futuro nel portfolio riservato (con log completo).
 
 Apri `data/operations.json` e aggiungi un oggetto nell'array `"operations"`.
 
-### Operazione APERTA (non ancora chiusa)
+### Operazione APERTA
 
 ```json
 {
@@ -74,8 +128,6 @@ Apri `data/operations.json` e aggiungi un oggetto nell'array `"operations"`.
 
 ### Operazione CHIUSA
 
-Stessa struttura, ma con `exit_date`, `exit_price` e `"status": "CLOSED"`:
-
 ```json
 {
   "id": "op-007",
@@ -100,7 +152,7 @@ Stessa struttura, ma con `exit_date`, `exit_price` e `"status": "CLOSED"`:
 
 ### Aggiorna anche il riepilogo
 
-Alla fine del file `operations.json` c'è il blocco `"summary"`. Aggiornalo manualmente:
+Alla fine di `operations.json` c'è il blocco `"summary"`. Aggiornalo manualmente dopo ogni operazione:
 
 ```json
 "summary": {
@@ -117,18 +169,47 @@ Alla fine del file `operations.json` c'è il blocco `"summary"`. Aggiornalo manu
 }
 ```
 
+Questi valori appaiono nelle **metriche chiave** della pagina portfolio pubblica.
+
 ---
 
-## 2. Pubblicare una nuova analisi nel Research Hub
+## 3. Aggiornare l'equity curve
 
-Apri `data/articles.json` e aggiungi un oggetto nell'array `"articles"`.
+La curva è generata da dati definiti direttamente nel codice JavaScript.
+
+Apri `js/portfolio.js` e cerca il blocco `equityData`:
+
+```js
+const equityData = [
+  { label: 'Gen', value: 0 },
+  { label: 'Feb', value: 7.9 },
+  { label: 'Mar', value: 5.8 },
+  ...
+];
+```
+
+Aggiungi un nuovo punto alla fine con il mese e il rendimento cumulato aggiornato:
+
+```js
+{ label: 'Mag25', value: 32.1 },
+```
+
+Stessa cosa in `js/main.js` per la curva che appare nella home.
+
+---
+
+## 4. Pubblicare una nuova analisi nel Research Hub
+
+Le analisi appaiono come anteprima nella home (pubblica) e complete nella pagina `private/research.html` (riservata).
+
+Apri `data/articles.json` e aggiungi in cima all'array `"articles"`:
 
 ```json
 {
   "id": "art-007",
   "category": "macro",
   "title": "Il titolo della tua analisi",
-  "excerpt": "Un breve riassunto di 1-2 righe che appare nella card. Deve invogliare alla lettura.",
+  "excerpt": "Un breve riassunto di 1-2 righe che appare nella card.",
   "date": "2025-05-10",
   "read_time": 12,
   "slug": "titolo-url-senza-spazi",
@@ -149,18 +230,16 @@ Apri `data/articles.json` e aggiungi un oggetto nell'array `"articles"`.
 
 ### Mettere in evidenza un articolo
 
-Imposta `"featured": true` — l'articolo apparirà nella sezione "In evidenza" in cima alla pagina Research.
+Imposta `"featured": true` — appare nella sezione "In evidenza" in cima al Research Hub.
 Tieni massimo 2 articoli con `featured: true` alla volta.
 
 ---
 
-## 3. Pubblicare un nuovo post sul Blog
+## 5. Pubblicare un nuovo post sul Blog
 
-Il blog è gestito direttamente in `blog.html` (non ha un file JSON separato).
+Il blog è scritto direttamente in `blog.html` (nessun file JSON).
 
-Apri `blog.html` e individua il blocco con i commenti `<!-- ══ ALL POSTS ══ -->`.
-
-Copia e incolla questo blocco aggiungendolo come primo elemento nella griglia:
+Apri `blog.html`, cerca `<!-- ══ ALL POSTS ══ -->` e aggiungi come primo elemento nella griglia:
 
 ```html
 <a href="#slug-del-post" class="article-card" style="text-decoration:none">
@@ -170,9 +249,7 @@ Copia e incolla questo blocco aggiungendolo come primo elemento nella griglia:
       <span class="article-card__date">10 Mag 2025</span>
     </div>
     <div class="article-card__title">Il titolo del tuo articolo</div>
-    <div class="article-card__excerpt">
-      Una descrizione breve dell'articolo. Massimo 2 righe.
-    </div>
+    <div class="article-card__excerpt">Una descrizione breve. Massimo 2 righe.</div>
   </div>
   <div class="article-card__footer">
     <span class="article-card__read">Leggi l'articolo →</span>
@@ -181,20 +258,20 @@ Copia e incolla questo blocco aggiungendolo come primo elemento nella griglia:
 </a>
 ```
 
-### Classi tag disponibili per il blog
+### Classi tag disponibili
 
-```
-tag--macro    → blu
-tag--equity   → verde
-tag--sector   → viola
-tag--idea     → arancione
-```
+| Classe | Colore |
+|--------|--------|
+| `tag--macro` | Blu |
+| `tag--equity` | Verde |
+| `tag--sector` | Viola |
+| `tag--idea` | Arancione |
 
 ---
 
-## 4. Pubblicare una nuova lettera periodica
+## 6. Pubblicare una nuova lettera periodica
 
-Apri `data/newsletter.json` e aggiungi in cima all'array `"issues"` (la più recente va sempre prima):
+Apri `data/newsletter.json` e aggiungi in cima all'array (la più recente va sempre prima):
 
 ```json
 {
@@ -209,33 +286,32 @@ Apri `data/newsletter.json` e aggiungi in cima all'array `"issues"` (la più rec
 }
 ```
 
-**Importante:** imposta `"featured": true` solo sull'ultima edizione e cambia quella precedente a `false`.
+**Importante:** imposta `"featured": true` solo sull'ultima edizione; metti `false` su quella precedente.
 
-### Aggiornare il contenuto dell'ultima lettera (testo completo)
+### Aggiornare il testo completo dell'ultima lettera
 
-Il contenuto della lettera più recente è scritto direttamente in `newsletter.html`.
-Cerca il blocco `<!-- ══ LATEST ISSUE PREVIEW ══ -->` e modifica il testo all'interno dei tag `<p>`, `<h3>`, `<ul>`.
-
----
-
-## 5. Modificare i testi delle pagine
-
-Ogni pagina HTML contiene il testo direttamente. Per modificarlo:
-
-| Vuoi cambiare... | Apri questo file |
-|------------------|-----------------|
-| Testo hero / presentazione home | `index.html` → cerca `hero__title` |
-| Testo sezione "Chi sono" | `about.html` → cerca `about-content` |
-| Testi filosofia/pilastri | `index.html` → cerca `pillars` |
-| Testo pagina research | `research.html` → cerca `page-hero` |
-| Testo pagina portfolio | `portfolio.html` → cerca `page-hero` |
-| Disclaimer footer | qualsiasi `.html` → cerca `footer__disclaimer` |
+Apri `newsletter.html`, cerca `<!-- ══ LATEST ISSUE PREVIEW ══ -->` e modifica il testo nei tag `<p>`, `<h3>`, `<ul>`.
 
 ---
 
-## 6. Modificare colori e stile
+## 7. Modificare i testi delle pagine
 
-Apri `css/style.css`. All'inizio del file trovi le variabili del design system:
+| Vuoi cambiare... | File da aprire | Cerca nel file |
+|------------------|----------------|----------------|
+| Titolo e sottotitolo hero | `index.html` | `hero__title` |
+| Descrizione hero | `index.html` | `hero__desc` |
+| Pilastri filosofia | `index.html` | `pillars` |
+| Testo "Chi sono" | `about.html` | `about-content` |
+| Testo pagina portfolio | `portfolio.html` | `page-hero` |
+| Testo pagina blog | `blog.html` | `page-hero` |
+| Testo waiting list (pannello sinistro) | `waiting-list.html` | `wl-left` |
+| Disclaimer footer | qualsiasi `.html` | `footer__disclaimer` |
+
+---
+
+## 8. Modificare colori e stile
+
+Apri `css/style.css`. All'inizio trovi le variabili del design system:
 
 ```css
 :root {
@@ -249,13 +325,13 @@ Apri `css/style.css`. All'inizio del file trovi le variabili del design system:
 }
 ```
 
-Cambia solo questi valori per ridisegnare l'intera palette del sito senza toccare altro.
+Cambia solo questi valori per aggiornare l'intera palette senza toccare altro.
 
 ---
 
-## 7. Aggiornare la foto profilo (About)
+## 9. Aggiornare la foto profilo (About)
 
-Nella pagina `about.html` cerca questo blocco:
+Nella pagina `about.html` cerca:
 
 ```html
 <div class="about-avatar">
@@ -277,23 +353,25 @@ Poi metti la tua foto nella cartella `assets/img/` con il nome `foto-profilo.jpg
 
 ```
 1. Apri il file da modificare (JSON o HTML)
-2. Fai la modifica
-3. Salva il file
-4. Apri il terminale nella cartella "Pagina web"
-5. Esegui:
+2. Fai la modifica e salva
+3. Apri il terminale nella cartella "Pagina web"
+4. Esegui:
 
    git add .
-   git commit -m "nuova analisi: NVIDIA Q2 2025"
+   git commit -m "nuova lettera: maggio 2025"
    git push
 
-6. Aspetta 1-2 minuti
-7. Vai su https://mttbsn1994.github.io — il sito è aggiornato
+5. Aspetta 1-2 minuti
+6. Vai su https://mttbsn1994.github.io — il sito è aggiornato
 ```
 
 ---
 
-## URL del sito e repository
+## URL e riferimenti
 
-- **Sito live:** https://mttbsn1994.github.io
-- **Repository:** https://github.com/mttbsn1994/mttbsn1994.github.io
-- **Cartella locale:** `C:\Users\Lenovo\OneDrive\Documentos\Pagina web`
+| | |
+|--|--|
+| **Sito live** | https://mttbsn1994.github.io |
+| **Repository** | https://github.com/mttbsn1994/mttbsn1994.github.io |
+| **Cartella locale** | `C:\Users\Lenovo\OneDrive\Documentos\Pagina web` |
+| **Formspree** | https://formspree.io (per ricevere email dalla waiting list) |
