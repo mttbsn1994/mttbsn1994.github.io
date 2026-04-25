@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio & Performance — Verion Research</title>
+  <meta name="description" content="Storico completo delle operazioni. Entry, exit, motivazione, risultati. Equity curve e metriche chiave documentate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <div class="navbar__logo-mark">VR</div>
+      <span class="navbar__brand">Verion <span>Research</span></span>
+    </a>
+    <div class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="newsletter.html">Lettera</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="research.html" class="navbar__cta">Inizia qui →</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="container">
+    <p class="label mb-2">Portfolio &amp; Performance</p>
+    <h1>La performance è una conseguenza del processo.</h1>
+    <p>Ogni operazione documentata. Entry, exit, motivazione e contesto di mercato. I risultati non sono una promessa, sono un'evidenza.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ KEY METRICS ══ -->
+  <div style="margin-bottom:3rem">
+    <p class="label mb-2">Metriche chiave</p>
+    <div class="card-grid card-grid--3" style="grid-template-columns:repeat(6,1fr)">
+      <div class="metric-card">
+        <div class="metric-card__label">Rendimento totale</div>
+        <div class="metric-card__value" id="m-return">—</div>
+        <div class="metric-card__sub">dall'inizio</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__label">Max Drawdown</div>
+        <div class="metric-card__value" id="m-drawdown">—</div>
+        <div class="metric-card__sub">picco-valle</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__label">Win Rate</div>
+        <div class="metric-card__value" id="m-winrate">—</div>
+        <div class="metric-card__sub">operazioni chiuse</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__label">Sharpe Ratio</div>
+        <div class="metric-card__value" id="m-sharpe">—</div>
+        <div class="metric-card__sub">annualizzato</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__label">Operazioni totali</div>
+        <div class="metric-card__value" id="m-ops">—</div>
+        <div class="metric-card__sub">dall'inizio</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-card__label">Posizioni aperte</div>
+        <div class="metric-card__value" id="m-open">—</div>
+        <div class="metric-card__sub">attualmente</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EQUITY CURVE ══ -->
+  <div style="margin-bottom:3rem">
+    <div class="chart-container">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem">
+        <div>
+          <div class="label mb-2">Equity Curve</div>
+          <div style="font-size:.875rem;color:var(--text-muted)">Rendimento cumulato dall'inizio dell'attività — aggiornato mensilmente</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;font-size:.8rem;color:var(--text-muted)">
+          <span style="display:flex;align-items:center;gap:.4rem"><span style="width:20px;height:2px;background:var(--accent);display:inline-block;border-radius:1px"></span>Portafoglio</span>
+        </div>
+      </div>
+      <svg id="equity-curve" class="equity-svg" style="height:260px"></svg>
+    </div>
+  </div>
+
+  <!-- ══ OPERATIONS TABLE ══ -->
+  <div style="margin-bottom:5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+      <p class="label">Log operazioni</p>
+      <div style="display:flex;gap:.5rem">
+        <button class="filter-btn active" data-status-filter="all">Tutte</button>
+        <button class="filter-btn" data-status-filter="OPEN">Aperte</button>
+        <button class="filter-btn" data-status-filter="CLOSED">Chiuse</button>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Strumento</th>
+            <th>Tipo</th>
+            <th>Entry</th>
+            <th>Prezzo entry</th>
+            <th>Exit</th>
+            <th>Prezzo exit</th>
+            <th>P&amp;L</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ops-tbody">
+          <tr><td colspan="9" style="text-align:center;color:var(--text-muted);padding:2rem">Caricamento operazioni…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem;font-size:.78rem;color:var(--text-muted)">
+      * Le dimensioni e i prezzi sono indicativi. Tutti i risultati sono lordi di commissioni e tasse.
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ DISCLAIMER ══ -->
+<section class="section--sm" style="background:var(--bg-secondary);border-top:1px solid var(--border)">
+  <div class="container" style="max-width:720px;text-align:center">
+    <p class="label mb-2">Nota importante</p>
+    <p style="font-size:.875rem">
+      I risultati passati non garantiscono risultati futuri. Le informazioni riportate hanno finalità esclusivamente documentativa e non costituiscono consulenza finanziaria.
+      Ogni operazione è documentata con la relativa tesi e motivazione per fini di trasparenza e apprendimento, non di raccomandazione.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <div class="navbar__logo-mark">VR</div>
+          <span class="navbar__brand">Verion <span>Research</span></span>
+        </div>
+        <p class="footer__tagline">Un sistema strutturato per ragionare sui mercati. Ricerca, processo, trasparenza.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Piattaforma</h4>
+        <ul>
+          <li><a href="research.html">Research Hub</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="newsletter.html">Lettera periodica</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Sezioni</h4>
+        <ul>
+          <li><a href="research.html">Macro</a></li>
+          <li><a href="research.html">Equity</a></li>
+          <li><a href="research.html">Settori</a></li>
+          <li><a href="research.html">Idee</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">Chi sono</a></li>
+          <li><a href="about.html">Approccio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Verion Research. Tutti i diritti riservati.</p>
+      <p class="footer__disclaimer">I contenuti hanno finalità esclusivamente informativa ed educativa. Non costituiscono consulenza finanziaria o raccomandazione di investimento.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ OPERATION DETAIL MODAL ══ -->
+<div id="op-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);max-width:720px;width:100%;max-height:90vh;overflow-y:auto;padding:2rem;position:relative">
+    <button id="op-modal-close" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.2rem;line-height:1" aria-label="Chiudi">✕</button>
+    <div id="op-modal-body"></div>
+  </div>
+</div>
+
+<script src="js/components.js"></script>
+<script src="js/portfolio.js"></script>
+</body>
+</html>

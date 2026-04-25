@@ -1,0 +1,70 @@
+{
+  "articles": [
+    {
+      "id": "art-001",
+      "category": "macro",
+      "title": "Il ciclo del debito sovrano e le sue implicazioni per il 2025",
+      "excerpt": "Analisi della dinamica del debito nei paesi sviluppati, con focus su USA e UE. Cosa significa per i mercati azionari e obbligazionari nel medio termine.",
+      "date": "2025-04-18",
+      "read_time": 12,
+      "slug": "ciclo-debito-sovrano-2025",
+      "tags": ["macro", "bonds", "fiscal-policy"],
+      "featured": true
+    },
+    {
+      "id": "art-002",
+      "category": "equity",
+      "title": "Investment Thesis: NVIDIA nell'era dell'AI Infrastructure",
+      "excerpt": "Analisi fondamentale completa di NVIDIA. Moat competitivo, rischi principali, valutazione e ragionamento dietro la nostra posizione.",
+      "date": "2025-04-10",
+      "read_time": 18,
+      "slug": "nvidia-ai-infrastructure-thesis",
+      "tags": ["nvidia", "ai", "semiconductor"],
+      "featured": true
+    },
+    {
+      "id": "art-003",
+      "category": "macro",
+      "title": "Mercato del lavoro USA: segnali contrastanti e cosa guardare",
+      "excerpt": "Il mercato del lavoro americano continua a sorprendere. Analizziamo i dati di febbraio e cosa implicano per la politica monetaria della Fed.",
+      "date": "2025-03-28",
+      "read_time": 8,
+      "slug": "mercato-lavoro-usa-2025",
+      "tags": ["usa", "macro", "fed"],
+      "featured": false
+    },
+    {
+      "id": "art-004",
+      "category": "sector",
+      "title": "Settore Energetico: tra transizione e profitti record",
+      "excerpt": "Analisi del settore energia con focus su majors petrolifere europee. La transizione energetica crea opportunità strutturali che il mercato non prezza correttamente.",
+      "date": "2025-03-15",
+      "read_time": 14,
+      "slug": "settore-energetico-transizione",
+      "tags": ["energy", "oil", "transition"],
+      "featured": false
+    },
+    {
+      "id": "art-005",
+      "category": "idea",
+      "title": "Idee di Investimento Q1 2025: tre temi da monitorare",
+      "excerpt": "Tre temi di investimento emergenti per i prossimi 12-18 mesi. Analisi delle opportunità in difesa europea, acqua e infrastruttura AI edge.",
+      "date": "2025-03-01",
+      "read_time": 10,
+      "slug": "idee-q1-2025",
+      "tags": ["ideas", "europe", "infrastructure"],
+      "featured": false
+    },
+    {
+      "id": "art-006",
+      "category": "equity",
+      "title": "Berkshire Hathaway: qualità come strategia difensiva",
+      "excerpt": "Perché una holding con $160B di cash è oggi una delle posizioni più interessanti in un mercato incerto. Analisi della composizione del portafoglio.",
+      "date": "2025-02-20",
+      "read_time": 11,
+      "slug": "berkshire-hathaway-analisi",
+      "tags": ["berkshire", "value", "buffett"],
+      "featured": false
+    }
+  ]
+}

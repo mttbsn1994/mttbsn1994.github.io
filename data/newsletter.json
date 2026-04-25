@@ -1,0 +1,44 @@
+{
+  "issues": [
+    {
+      "id": "letter-004",
+      "number": 4,
+      "title": "Aprile 2025: Volatilità, errori e adattamenti",
+      "date": "2025-04-01",
+      "excerpt": "Un mese di mercati nervosi. Come abbiamo gestito la volatilità, cosa non ha funzionato e quali decisioni abbiamo preso per il secondo trimestre.",
+      "performance_pct": 2.1,
+      "slug": "lettera-aprile-2025",
+      "featured": true
+    },
+    {
+      "id": "letter-003",
+      "number": 3,
+      "title": "Marzo 2025: Focus sul rischio e costruzione del portafoglio",
+      "date": "2025-03-01",
+      "excerpt": "Revisione della composizione del portafoglio. Abbiamo ridotto l'esposizione tech e aumentato la posizione difensiva. Ecco il ragionamento.",
+      "performance_pct": -1.8,
+      "slug": "lettera-marzo-2025",
+      "featured": false
+    },
+    {
+      "id": "letter-002",
+      "number": 2,
+      "title": "Febbraio 2025: Il mercato del debito cambia tutto",
+      "date": "2025-02-01",
+      "excerpt": "L'aumento dei rendimenti obbligazionari impatta la valutazione degli asset. Analizziamo le implicazioni e come abbiamo adattato il portafoglio.",
+      "performance_pct": 4.3,
+      "slug": "lettera-febbraio-2025",
+      "featured": false
+    },
+    {
+      "id": "letter-001",
+      "number": 1,
+      "title": "Gennaio 2025: Inizio anno, framework e prima operazione",
+      "date": "2025-01-01",
+      "excerpt": "Prima lettera di Verion Research. Presentiamo il framework operativo, la filosofia di gestione del rischio e la prima operazione documentata.",
+      "performance_pct": 7.9,
+      "slug": "lettera-gennaio-2025",
+      "featured": false
+    }
+  ]
+}

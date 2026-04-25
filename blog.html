@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Verion Research</title>
+  <meta name="description" content="Contenuti accessibili su concetti finanziari, riflessioni sui mercati e applicazioni reali del processo di investimento.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <div class="navbar__logo-mark">VR</div>
+      <span class="navbar__brand">Verion <span>Research</span></span>
+    </a>
+    <div class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="newsletter.html">Lettera</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="research.html" class="navbar__cta">Inizia qui →</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="container">
+    <p class="label mb-2">Blog</p>
+    <h1>Concetti, riflessioni e applicazioni reali.</h1>
+    <p>Contenuti più accessibili per chi vuole costruire una base solida. Non teoria scollegata dalla pratica, ma strumenti applicati al processo reale.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ FEATURED POST ══ -->
+  <div style="margin-bottom:4rem">
+    <p class="label mb-2">In primo piano</p>
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem">
+
+      <a href="#perche-il-processo-conta" class="article-card" style="text-decoration:none">
+        <div class="article-card__body" style="padding:2rem">
+          <div class="article-card__meta">
+            <span class="tag tag--macro">Processo</span>
+            <span class="article-card__date">20 Apr 2025</span>
+          </div>
+          <div class="article-card__title" style="font-size:1.4rem;margin-bottom:.75rem">Perché il processo conta più del risultato (almeno nel breve termine)</div>
+          <div class="article-card__excerpt">
+            In finanza siamo ossessionati dai risultati. Ma un buon risultato ottenuto con un processo sbagliato è solo fortuna mascherata. Ecco perché il metodo viene prima del rendimento.
+          </div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">7 min lettura</span>
+        </div>
+      </a>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <a href="#cosa-e-il-drawdown" class="article-card" style="text-decoration:none;flex:1">
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              <span class="tag tag--equity">Risk</span>
+              <span class="article-card__date">12 Apr 2025</span>
+            </div>
+            <div class="article-card__title">Cos'è il drawdown e perché devi imparare a conviverci</div>
+            <div class="article-card__excerpt" style="font-size:.82rem">Il drawdown non è un'eccezione. È parte strutturale di qualsiasi strategia di investimento.</div>
+          </div>
+          <div class="article-card__footer">
+            <span class="article-card__read">Leggi →</span>
+            <span class="text-muted" style="font-size:.78rem">5 min</span>
+          </div>
+        </a>
+        <a href="#macro-per-investitori" class="article-card" style="text-decoration:none;flex:1">
+          <div class="article-card__body">
+            <div class="article-card__meta">
+              <span class="tag tag--macro">Macro</span>
+              <span class="article-card__date">5 Apr 2025</span>
+            </div>
+            <div class="article-card__title">Macro per investitori: le 5 variabili che devi sempre monitorare</div>
+            <div class="article-card__excerpt" style="font-size:.82rem">Non serve seguire ogni dato economico. Bastano cinque variabili chiave per avere una visione strutturata del contesto.</div>
+          </div>
+          <div class="article-card__footer">
+            <span class="article-card__read">Leggi →</span>
+            <span class="text-muted" style="font-size:.78rem">8 min</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══ ALL POSTS ══ -->
+  <div style="margin-bottom:5rem">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+      <p class="label">Tutti gli articoli</p>
+      <div class="filter-bar" style="margin-bottom:0">
+        <button class="filter-btn active" data-cat="all">Tutto</button>
+        <button class="filter-btn" data-cat="processo">Processo</button>
+        <button class="filter-btn" data-cat="macro">Macro</button>
+        <button class="filter-btn" data-cat="analisi">Analisi</button>
+        <button class="filter-btn" data-cat="rischio">Rischio</button>
+      </div>
+    </div>
+
+    <div class="card-grid card-grid--3">
+
+      <a href="#sharpe-ratio-spiegato" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--equity">Analisi</span>
+            <span class="article-card__date">28 Mar 2025</span>
+          </div>
+          <div class="article-card__title">Sharpe Ratio: cosa misura davvero e come usarlo</div>
+          <div class="article-card__excerpt">Non è solo un numero. Il rapporto di Sharpe è uno dei pochi strumenti che ti permette di confrontare strategie diverse su base omogenea.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">6 min lettura</span>
+        </div>
+      </a>
+
+      <a href="#come-analizzare-bilancio" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--equity">Analisi</span>
+            <span class="article-card__date">18 Mar 2025</span>
+          </div>
+          <div class="article-card__title">Come leggere un bilancio in 30 minuti (le cose che contano davvero)</div>
+          <div class="article-card__excerpt">Non serve diventare contabili. Bastano cinque voci per capire se un'azienda è finanziariamente sana o fragile.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">9 min lettura</span>
+        </div>
+      </a>
+
+      <a href="#errori-investitori-principianti" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--macro">Processo</span>
+            <span class="article-card__date">8 Mar 2025</span>
+          </div>
+          <div class="article-card__title">I 5 errori più comuni degli investitori autonomi (e come evitarli)</div>
+          <div class="article-card__excerpt">Non sono errori di calcolo. Sono errori di processo e di psicologia. E li fanno tutti, anche i professionisti.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">7 min lettura</span>
+        </div>
+      </a>
+
+      <a href="#tasso-privo-rischio" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--macro">Macro</span>
+            <span class="article-card__date">22 Feb 2025</span>
+          </div>
+          <div class="article-card__title">Il tasso privo di rischio cambia tutto: perché i tassi alti impattano i mercati</div>
+          <div class="article-card__excerpt">Quando i tassi salgono, la valutazione di ogni asset cambia. Ecco la logica dietro al meccanismo e come influenza le nostre scelte.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">8 min lettura</span>
+        </div>
+      </a>
+
+      <a href="#position-sizing" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--equity">Rischio</span>
+            <span class="article-card__date">10 Feb 2025</span>
+          </div>
+          <div class="article-card__title">Position sizing: la variabile che nessuno ti insegna ma che determina i risultati</div>
+          <div class="article-card__excerpt">Puoi avere ragione su un'operazione e perderci comunque. Il sizing è spesso più importante della direzione.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">10 min lettura</span>
+        </div>
+      </a>
+
+      <a href="#investment-thesis" class="article-card" style="text-decoration:none">
+        <div class="article-card__body">
+          <div class="article-card__meta">
+            <span class="tag tag--macro">Processo</span>
+            <span class="article-card__date">28 Gen 2025</span>
+          </div>
+          <div class="article-card__title">Come si costruisce un'investment thesis: struttura e domande da farsi</div>
+          <div class="article-card__excerpt">Prima di comprare qualsiasi cosa, devi saper rispondere a tre domande fondamentali. Ecco il framework che usiamo.</div>
+        </div>
+        <div class="article-card__footer">
+          <span class="article-card__read">Leggi l'articolo →</span>
+          <span class="text-muted" style="font-size:.78rem">11 min lettura</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <div class="navbar__logo-mark">VR</div>
+          <span class="navbar__brand">Verion <span>Research</span></span>
+        </div>
+        <p class="footer__tagline">Un sistema strutturato per ragionare sui mercati. Ricerca, processo, trasparenza.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Piattaforma</h4>
+        <ul>
+          <li><a href="research.html">Research Hub</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="newsletter.html">Lettera periodica</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Argomenti</h4>
+        <ul>
+          <li><a href="#">Processo</a></li>
+          <li><a href="#">Macro</a></li>
+          <li><a href="#">Analisi</a></li>
+          <li><a href="#">Rischio</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">Chi sono</a></li>
+          <li><a href="about.html">Approccio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Verion Research. Tutti i diritti riservati.</p>
+      <p class="footer__disclaimer">I contenuti hanno finalità esclusivamente informativa ed educativa. Non costituiscono consulenza finanziaria o raccomandazione di investimento.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/components.js"></script>
+</body>
+</html>
